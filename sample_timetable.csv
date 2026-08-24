@@ -1,0 +1,3 @@
+day,start_time,end_time,class,section,subject_code,subject,teacher,room,lecture_type
+MONDAY,09:00,10:00,CSE,A,CS301,DBMS,Dr. Rajesh Sharma,A-101,Lecture
+MONDAY,10:00,11:00,CSE,A,CS302,Machine Learning,Prof. Amit Verma,A-101,Lecture

@@ -20,8 +20,27 @@ from .seed import seed
 
 app = FastAPI(title="Smart Faculty Timetable API", version="1.0.0")
 
-origins = [x.strip() for x in __import__("os").getenv("CORS_ORIGINS","http://localhost:5173").split(",")]
-app.add_middleware(CORSMiddleware, allow_origins=origins, allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
+import os
+
+origins = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "https://smart-faculty-timetable-management.vercel.app",
+]
+
+extra_origins = os.getenv("CORS_ORIGINS", "")
+if extra_origins:
+    origins.extend(
+        [origin.strip() for origin in extra_origins.split(",") if origin.strip()]
+    )
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.on_event("startup")
 def startup():
